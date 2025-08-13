@@ -11,7 +11,7 @@ class EnqueueController {
     ];
 
     private array $admin_script = [
-        'backend-atib-plugin-script' => ['assets/backend/js/backend-script.js', [], null],
+        'backend-atib-plugin-script' => ['assets/backend/js/backend-script.js', ['jquery'], null],
     ];
 
     private array $frontend_style = [
@@ -19,7 +19,7 @@ class EnqueueController {
     ];
 
     private array $frontend_script = [
-        'frontend-atib-plugin-script' => ['assets/frontend/js/frontend-script.js', [], null],
+        'frontend-atib-plugin-script' => ['assets/frontend/js/frontend-script.js', ['jquery'], null],
     ];
 
     public function __construct() {
@@ -31,6 +31,9 @@ class EnqueueController {
         if (!defined('ADVANCED_TAXONOMY_IMAGES_PLUGIN_URL') || !defined('ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH')) {
             return;
         }
+
+        // Enqueue WordPress media library for image upload functionality
+        wp_enqueue_media();
 
         $this->enqueue_assets($this->admin_style, $this->admin_script);
     }
