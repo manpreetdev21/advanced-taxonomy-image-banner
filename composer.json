@@ -1,0 +1,13 @@
+{
+    "name": "your-name/advanced-taxonomy-images",
+    "description": "Advanced Taxonomy Images and Banners for WordPress",
+    "type": "wordpress-plugin",
+    "autoload": {
+        "psr-4": {
+            "AdvancedTaxonomyImages\\": "includes/"
+        }
+    },
+    "require": {
+        "php": ">=7.0"
+    }
+}
