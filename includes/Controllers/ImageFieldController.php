@@ -11,7 +11,6 @@ class ImageFieldController{
 
     function __construct(){
         $this->taxonomies = get_taxonomies();
-        
         foreach ( $this->taxonomies as $taxonomy) {
             if( ( $taxonomy != 'nav_menu' ) && ( $taxonomy != 'post_format' ) && ( $taxonomy != 'wp_theme' ) && ( $taxonomy != 'wp_template_part_area' ) && ( $taxonomy != 'wp_pattern_category' ) ){
                 add_action( "{$taxonomy}_add_form_fields", array( $this, 'atib_add_taxonomy_image_field' ) );
@@ -55,5 +54,4 @@ class ImageFieldController{
         }
         return $content;
     }
-
 }
