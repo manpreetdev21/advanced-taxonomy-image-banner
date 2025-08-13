@@ -1,6 +1,6 @@
 <tr class="form-field term-group-wrap">
     <th scope="row">
-        <label for="taxonomy-image-id" class="taxonomy-image-label"><?php _e('Main Image', 'text-domain'); ?></label>
+        <label for="taxonomy-image-id" class="taxonomy-image-label"><?php _e('Main Image', 'advanced-taxonomy-image-banner'); ?></label>
     </th>
     <td>
         <div class="taxonomy-image-control">
@@ -17,12 +17,12 @@
             <div class="taxonomy-image-actions">
                 <button type="button" class="button button-secondary taxonomy_media_button components-button is-secondary" id="taxonomy_media_button" name="taxonomy_media_button">
                     <span class="dashicons dashicons-format-image"></span>
-                    <?php _e('Add Image', 'text-domain'); ?>
+                    <?php _e('Add Image', 'advanced-taxonomy-image-banner'); ?>
                 </button>
                 
                 <button type="button" class="button button-secondary taxonomy_media_remove components-button is-destructive" id="taxonomy_media_remove" name="taxonomy_media_remove">
                     <span class="dashicons dashicons-trash"></span>
-                    <?php _e('Remove Image', 'text-domain'); ?>
+                    <?php _e('Remove Image', 'advanced-taxonomy-image-banner'); ?>
                 </button>
             </div>
         </div>
