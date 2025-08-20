@@ -46,7 +46,7 @@ class AdvancedTaxonomyImages {
         return self::$instance;
     }
 
-    private function __construct() {
+    private function __construct() {        
         $this->init();
     }
 
@@ -71,7 +71,7 @@ class AdvancedTaxonomyImages {
         register_deactivation_hook(__FILE__, [$this, 'deactivate']);
     }
 
-    public function activate() {
+    public function activate() {        
         flush_rewrite_rules();
     }
 
