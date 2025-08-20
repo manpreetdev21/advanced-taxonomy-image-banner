@@ -35,6 +35,17 @@ class EnqueueController {
         // Enqueue WordPress media library for image upload functionality
         wp_enqueue_media();
 
+        // Then localize the script (must be after the script is registered)
+        if (function_exists('wc_placeholder_img_src')) {
+            wp_localize_script(
+                'backend-atib-plugin-script',
+                'taxonomy_banner_slider_vars',
+                array(
+                    'placeholder_url' => wc_placeholder_img_src()
+                )
+            );
+        }
+
         $this->enqueue_assets($this->admin_style, $this->admin_script);
     }
 

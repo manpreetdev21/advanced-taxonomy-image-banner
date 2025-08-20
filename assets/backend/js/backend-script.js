@@ -46,3 +46,59 @@ jQuery(document).ready(function($) {
         }
     }
 });
+
+/* Banner images */
+jQuery(document).ready(function($) {
+   // Add new banner
+    $(document).on('click', '.add_new_banner_button', function() {
+        var $container = $('.banner-slider-container');
+        var $firstItem = $container.find('.banner-slider-item').first();
+        
+        if ($firstItem.length) {
+            var $clone = $firstItem.clone();
+            $clone.find('.image_attachment_id').val('');
+            $clone.find('.button_remove_image_button').hide();
+            $clone.find('.button_remove_banner_button').remove();
+            $clone.append('<button type="button" class="button button_remove_banner_button"><span class="dashicons dashicons-trash"></span></button>');
+            $container.append($clone);
+        }
+    });
+
+    // Remove banner
+    $(document).on('click', '.button_remove_banner_button', function() {
+        $(this).closest('.banner-slider-item').remove();
+    });
+
+    // Image upload
+    $(document).on('click', '.taxonomy_media_banner_button', function(e) {
+        e.preventDefault();
+        var $button = $(this);
+        var $input = $button.siblings('.image_attachment_id');
+        var $img = $button.closest('.banner-slider-item').find('img');
+
+        // Create media frame
+        var frame = wp.media({
+            title: 'Select or Upload Banner Image',
+            button: { text: 'Use this image' },
+            multiple: false
+        });
+
+        frame.on('select', function() {
+            var attachment = frame.state().get('selection').first().toJSON();
+            $input.val(attachment.id);
+            $img.attr('src', attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url);
+            $button.siblings('.taxonomy_media_banner_remove').show();
+        });
+
+        frame.open();
+    });
+
+    // Image remove
+    $(document).on('click', '.taxonomy_media_banner_remove', function(e) {
+        e.preventDefault();
+        var $button = $(this);
+        $button.siblings('.image_attachment_id').val('');
+        $button.closest('.banner-slider-item').find('img').attr('src', placeholder_img);
+        $button.hide();
+    });
+});
