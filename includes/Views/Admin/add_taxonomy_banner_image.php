@@ -3,12 +3,12 @@
     
     <div class="banner-slider-container">
         <div class="banner-slider-item">
-            <div class="taxonomy-image-preview-wrapper">
-                <div class="taxonomy-image-preview"></div>
+            <div class="taxonomy-banner-image-preview-wrapper">
+                <div class="taxonomy-banner-image-preview"></div>
             </div>
-            
-            <div class="taxonomy-image-actions">
-                <input type="hidden" class="image_attachment_id" name="taxonomy-banner-image-id[]" value="">
+
+            <div class="taxonomy-banner-image-actions">
+                <input type="hidden" class="image_attachment_banner_id" name="taxonomy-banner-image-id[]" value="">
                 
                 <button type="button" class="button button-secondary taxonomy_media_banner_button components-button is-secondary" id="taxonomy_media_button" name="taxonomy_media_button">
                     <span class="dashicons dashicons-format-image"></span>

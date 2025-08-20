@@ -56,7 +56,7 @@ jQuery(document).ready(function($) {
         
         if ($firstItem.length) {
             var $clone = $firstItem.clone();
-            $clone.find('.image_attachment_id').val('');
+            $clone.find('.image_attachment_banner_id').val('');
             $clone.find('.button_remove_image_button').hide();
             $clone.find('.button_remove_banner_button').remove();
             $clone.append('<button type="button" class="button button_remove_banner_button"><span class="dashicons dashicons-trash"></span></button>');
@@ -73,7 +73,7 @@ jQuery(document).ready(function($) {
     $(document).on('click', '.taxonomy_media_banner_button', function(e) {
         e.preventDefault();
         var $button = $(this);
-        var $input = $button.siblings('.image_attachment_id');
+        var $input = $button.siblings('.image_attachment_banner_id');
         var $img = $button.closest('.banner-slider-item').find('img');
 
         // Create media frame
@@ -85,7 +85,11 @@ jQuery(document).ready(function($) {
 
         frame.on('select', function() {
             var attachment = frame.state().get('selection').first().toJSON();
+            console.log($input);
             $input.val(attachment.id);
+            $('.taxonomy-image-preview').html('<img src="' + attachment.url + '" alt="" style="max-width:100%;"/>');
+            // Add class to indicate image is present
+            $('.taxonomy-image-preview').addClass('has-image');
             $img.attr('src', attachment.sizes.thumbnail ? attachment.sizes.thumbnail.url : attachment.url);
             $button.siblings('.taxonomy_media_banner_remove').show();
         });
@@ -98,7 +102,6 @@ jQuery(document).ready(function($) {
         e.preventDefault();
         var $button = $(this);
         $button.siblings('.image_attachment_id').val('');
-        $button.closest('.banner-slider-item').find('img').attr('src', placeholder_img);
         $button.hide();
     });
 });
