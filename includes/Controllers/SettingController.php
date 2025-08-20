@@ -9,7 +9,7 @@ class SettingController{
     private $plugin_setting_page_slug = 'advanced-taxonomy-image-banner-setting';
     private $plugin_setting_page_text = 'Advanced Taxonomy Image';
     private $plugin_setting_link_text = 'Settings';
-    private $get_taxnomies_slug = '';
+    public $get_taxnomies_slug = '';
 
     public function __construct() {
         add_filter( 'plugin_action_links', array( $this, 'atib_add_taxonomy_image_action_plugin' ), 10, 2 );

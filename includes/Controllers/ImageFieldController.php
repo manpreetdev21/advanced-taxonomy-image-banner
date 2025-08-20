@@ -1,17 +1,17 @@
 <?php 
 
 namespace AdvancedTaxonomyImages\Controllers;
+use AdvancedTaxonomyImages\Controllers\SettingController;
+
 
 defined('ABSPATH') || exit;
 
 class ImageFieldController{
 
-    public $taxonomies = '';
     public $image_id = '';
 
     function __construct(){
-        $this->taxonomies = get_taxonomies();
-        foreach ( $this->taxonomies as $taxonomy) {
+        foreach ( $this->get_all_taxnomy_slug() as $taxonomy) {
             if( ( $taxonomy != 'nav_menu' ) && ( $taxonomy != 'post_format' ) && ( $taxonomy != 'wp_theme' ) && ( $taxonomy != 'wp_template_part_area' ) && ( $taxonomy != 'wp_pattern_category' ) ){
                 add_action( "{$taxonomy}_add_form_fields", array( $this, 'atib_add_taxonomy_image_field' ) );
                 add_action( "{$taxonomy}_edit_form_fields", array( $this, 'atib_edit_taxonomy_image_field' ), 10, 2 );
@@ -53,5 +53,12 @@ class ImageFieldController{
             }
         }
         return $content;
+    }
+
+    public function get_all_taxnomy_slug(){
+        $data = get_option( 'get_taxnomies_slug' );
+        $data = str_replace( ' ', '' , $data);;
+        $data = explode( '|', $data );
+        return $data;
     }
 }
