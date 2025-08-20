@@ -41,7 +41,7 @@ class ImageFieldController{
     }
 
     function atib_add_taxonomy_image_column($columns) {
-        $columns['taxonomy-image'] = __('Image', 'text-domain');
+        $columns['taxonomy-image'] = __('Image', 'advanced-taxonomy-image-banner');
         return $columns;
     }
 

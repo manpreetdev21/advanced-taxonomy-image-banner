@@ -15,10 +15,11 @@ namespace AdvancedTaxonomyImages;
 
 defined('ABSPATH') || exit;
 
-define('ADVANCED_TAXONOMY_IMAGES_PLUGIN_FILE', __FILE__);
-define('ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH', plugin_dir_path(__FILE__));
-define('ADVANCED_TAXONOMY_IMAGES_PLUGIN_URL', plugin_dir_url(__FILE__));
-define('ADVANCED_TAXONOMY_IMAGES_VERSION', '1.0.0');
+define( 'ADVANCED_TAXONOMY_IMAGES_PLUGIN_FILE', __FILE__ );
+define( 'ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH', plugin_dir_path( __FILE__) );
+define( 'ADVANCED_TAXONOMY_IMAGES_PLUGIN_URL', plugin_dir_url( __FILE__) );
+define( 'ADVANCED_TAXONOMY_IMAGES_PLUGIN_BASENAME', plugin_basename( ADVANCED_TAXONOMY_IMAGES_PLUGIN_FILE ) );
+define( 'ADVANCED_TAXONOMY_IMAGES_VERSION', '1.0.0' );
 
 // Autoload classes
 require_once ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'vendor/autoload.php';
