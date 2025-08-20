@@ -44,22 +44,21 @@ class SettingController{
             return;
         }
         
-        $this->get_taxnomies_slug = get_option('get_taxnomies_slug', 'post');
+        $this->get_taxnomies_slug = get_option('get_taxnomies_slug', 'category | post_tag');
 
         include ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'includes/Views/Admin/plugin_setting_page_taxonomy.php';
     }
 
     public function atib_add_taxonomy_image_handle_settings_save(){
-        if (!isset($_POST['ati_settings_nonce']) || 
-            !wp_verify_nonce($_POST['ati_settings_nonce'], 'ati_save_settings')) {
+        if ( !isset($_POST['ati_settings_nonce'] ) || !wp_verify_nonce($_POST['ati_settings_nonce'], 'ati_save_settings') ) {
             return;
         }
 
-        if (!current_user_can('manage_options')) {
+        if ( !current_user_can('manage_options') ) {
             return;
         }
 
-        if(isset( $_POST['get_taxnomies_slug'] ) ) {
+        if ( isset( $_POST['get_taxnomies_slug'] ) ) {
             update_option('get_taxnomies_slug', sanitize_textarea_field( $_POST['get_taxnomies_slug'] ) );
         }
 
