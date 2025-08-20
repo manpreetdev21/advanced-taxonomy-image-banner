@@ -23,16 +23,16 @@ class ImageFieldController{
         }
     }
 
-    function atib_add_taxonomy_image_field($taxonomy) {
+    public function atib_add_taxonomy_image_field($taxonomy) {
         include ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'includes/Views/Admin/add_taxonomy_image.php';
     }
 
-    function atib_edit_taxonomy_image_field($term, $taxonomy) {
+    public function atib_edit_taxonomy_image_field($term, $taxonomy) {
         $this->image_id = get_term_meta($term->term_id, 'taxonomy-image-id', true);
         include ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'includes/Views/Admin/edit_taxonomy_image.php';
     }
 
-    function atib_save_taxonomy_image($term_id) {
+    public function atib_save_taxonomy_image($term_id) {
         if (isset($_POST['taxonomy-image-id']) && '' !== $_POST['taxonomy-image-id']) {
             update_term_meta($term_id, 'taxonomy-image-id', absint($_POST['taxonomy-image-id']));
         } else {
@@ -40,12 +40,12 @@ class ImageFieldController{
         }
     }
 
-    function atib_add_taxonomy_image_column($columns) {
+    public function atib_add_taxonomy_image_column($columns) {
         $columns['taxonomy-image'] = __('Image', 'advanced-taxonomy-image-banner');
         return $columns;
     }
 
-    function atib_add_taxonomy_image_column_content($content, $column_name, $term_id) {
+    public function atib_add_taxonomy_image_column_content($content, $column_name, $term_id) {
         if ($column_name === 'taxonomy-image') {
             $image_id = get_term_meta($term_id, 'taxonomy-image-id', true);
             if ($image_id) {
