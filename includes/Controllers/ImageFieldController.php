@@ -1,8 +1,6 @@
 <?php 
 
 namespace AdvancedTaxonomyImages\Controllers;
-use AdvancedTaxonomyImages\Controllers\SettingController;
-
 
 defined('ABSPATH') || exit;
 
