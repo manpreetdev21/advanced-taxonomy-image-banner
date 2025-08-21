@@ -1,3 +1,13 @@
+:root {
+    --wp-admin-theme-color: #007cba;
+    --wp-admin-theme-color-darker-10: #006ba1;
+    --wp-admin-theme-color-darker-20: #005a87;
+    --wp-admin-border-width-focus: 2px;
+    --wp-block-synced-color: #7a00df;
+    --wp-block-sidebar-child-width: 210px;
+    --wp-block-sidebar-width: 280px;
+}
+
 /* Taxonomy Image Uploader Styles */
 .taxonomy-image-control {
     margin: 1.5em 0;
@@ -64,7 +74,7 @@
 
 .taxonomy-image-preview.has-image::before,
 .taxonomy-banner-image-preview.has-image::before {
-    content: "";
+    content: none; /* Changed from empty string to none */
 }
 
 .taxonomy-image-preview img,
@@ -76,14 +86,16 @@
     box-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
-.taxonomy-image-actions {
+.taxonomy-image-actions,
+.taxonomy-banner-image-actions {
     display: flex;
     gap: 12px;
     flex-wrap: wrap;
     align-items: center;
 }
 
-.taxonomy-image-actions .button {
+.taxonomy-image-actions .button,
+.taxonomy-banner-image-actions .button {
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -92,6 +104,7 @@
     font-size: 13px;
     line-height: 1.4;
     transition: all 0.1s ease;
+    cursor: pointer; /* Added cursor pointer */
 }
 
 .taxonomy_media_button {
@@ -135,16 +148,6 @@
     color: white;
 }
 
-:root {
-    --wp-admin-theme-color: #007cba;
-    --wp-admin-theme-color-darker-10: #006ba1;
-    --wp-admin-theme-color-darker-20: #005a87;
-    --wp-admin-border-width-focus: 2px;
-    --wp-block-synced-color: #7a00df;
-    --wp-block-sidebar-child-width: 210px;
-    --wp-block-sidebar-width: 280px;
-}
-
 .banner-slider-container {
     display: flex;
     flex-direction: column;
@@ -173,21 +176,16 @@
     justify-content: center;
     min-height: 150px;
     background: #f0f0f1;
-    border: 1px dashed #c3c4c7;
+    border: 2px dashed #c3c4c7;
     border-radius: 4px;
     overflow: hidden;
+    width: 200px;
 }
 
 .taxonomy-banner-image-preview img {
     max-width: 100%;
     max-height: 200px;
     object-fit: contain;
-}
-
-.taxonomy-banner-image-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
 }
 
 .button {
@@ -204,12 +202,14 @@
     line-height: 1.2;
     cursor: pointer;
     transition: all 0.2s ease;
+    text-decoration: none; /* Added to prevent underline */
 }
 
 .button:hover {
     background: #fff;
     border-color: #8c8f94;
     color: #1d2327;
+    text-decoration: none; /* Added for consistency */
 }
 
 .button.button-secondary {
@@ -241,15 +241,23 @@
 }
 
 .add_new_banner_button {
-    margin-top: 15px !important;
-    background: #f6f7f7 !important;
-    border: 1px dashed #8c8f94 !important;
+    margin-top: 15px;
+    background: #f6f7f7;
+    border: 1px dashed #8c8f94;
 }
 
 .add_new_banner_button:hover {
-    background: #fff !important;
-    border-color: var(--wp-admin-theme-color) !important;
-    color: var(--wp-admin-theme-color) !important;
+    background: #fff;
+    border-color: var(--wp-admin-theme-color);
+    color: var(--wp-admin-theme-color);
+}
+button.button.add_new_banner_button {
+    margin-top: 15px !important;
+    display: flex;
+}
+
+button.button.button_remove_banner_button {
+    display: flex;
 }
 
 .dashicons {
@@ -269,35 +277,40 @@
         align-items: flex-start;
     }
     
-    .taxonomy-image-preview-wrapper {
+    .taxonomy-banner-image-preview-wrapper { /* Fixed class name */
         flex: 0 0 200px;
     }
 }
 
 @media (max-width: 767px) {
-    .taxonomy-image-actions {
+    .taxonomy-image-actions,
+    .taxonomy-banner-image-actions { /* Added for consistency */
         flex-direction: column;
+        align-items: stretch; /* Changed from flex-start for better mobile layout */
     }
     
-    .button {
+    .taxonomy-image-actions .button,
+    .taxonomy-banner-image-actions .button {
         width: 100%;
         justify-content: center;
     }
+    
     .taxonomy-image-control {
         padding: 1.2em;
     }
     
-    .taxonomy-image-preview {
+    .taxonomy-image-preview,
+    .taxonomy-banner-image-preview {
         max-width: 100%;
-    }
-    
-    .taxonomy-image-actions {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .taxonomy-image-actions .button {
         width: 100%;
-        justify-content: center;
+    }
+    
+    .banner-slider-item {
+        flex-direction: column; /* Ensure column layout on mobile */
+    }
+    
+    .taxonomy-banner-image-preview {
+        width: 100%; /* Full width on mobile */
+        max-width: none;
     }
 }
