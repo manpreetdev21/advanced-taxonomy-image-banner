@@ -45,6 +45,7 @@ class SettingController{
         }
         
         $this->get_taxnomies_slug = get_option('get_taxnomies_slug', 'category | post_tag');
+        $this->get_banner_taxnomies_slug = get_option('get_banner_taxnomies_slug', 'category | post_tag');
 
         include ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'includes/Views/Admin/plugin_setting_page_taxonomy.php';
     }
@@ -60,6 +61,9 @@ class SettingController{
 
         if ( isset( $_POST['get_taxnomies_slug'] ) ) {
             update_option('get_taxnomies_slug', sanitize_textarea_field( $_POST['get_taxnomies_slug'] ) );
+        }
+        if ( isset( $_POST['get_banner_taxnomies_slug'] ) ) {
+            update_option('get_banner_taxnomies_slug', sanitize_textarea_field( $_POST['get_banner_taxnomies_slug'] ) );
         }
 
         add_settings_error(

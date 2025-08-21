@@ -8,11 +8,21 @@
             <tr>
                 <th scope="row" style="width: 25%;">
                     <label for="atib-get-taxnomies-slug-id">
-                        <?php _e('Taxonomy Slug ( with "|" ):', 'advanced-taxonomy-image-banner'); ?>
+                        <?php _e('Main Image Taxonomy Slug ( with "|" ):', 'advanced-taxonomy-image-banner'); ?>
                     </label>
                 </th>
                 <td>
                     <textarea id="atib-get-taxnomies-slug-id"  name="get_taxnomies_slug" rows="5" cols="50" class="large-text" placeholder="<?php esc_attr_e( 'Add Taxonomies Slug with "|" seprater', 'advanced-taxonomy-image-banner'); ?>"><?php echo esc_textarea( $this->get_taxnomies_slug != '' ? $this->get_taxnomies_slug : '' );?></textarea>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" style="width: 25%;">
+                    <label for="atib-get-taxnomies-slug-id">
+                        <?php _e('Banner Images Taxonomy Slug ( with "|" ):', 'advanced-taxonomy-image-banner'); ?>
+                    </label>
+                </th>
+                <td>
+                    <textarea id="atib-get-taxnomies-slug-id"  name="get_banner_taxnomies_slug" rows="5" cols="50" class="large-text" placeholder="<?php esc_attr_e( 'Add Taxonomies Slug with "|" seprater', 'advanced-taxonomy-image-banner'); ?>"><?php echo esc_textarea( $this->get_banner_taxnomies_slug != '' ? $this->get_banner_taxnomies_slug : '' );?></textarea>
                 </td>
             </tr>
         </table>
