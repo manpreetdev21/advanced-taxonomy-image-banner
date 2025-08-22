@@ -63,7 +63,7 @@ class BannerImageFieldController{
     }
 
     public function get_all_taxnomy_banner_slug(){
-        $data = get_option( 'get_taxnomies_slug', 'category | post_tag' );        
+        $data = get_option( 'get_banner_taxonomies_slug', 'category | post_tag' );        
         $data = str_replace( ' ', '', $data );
         $data = explode( '|', $data );
         return $data;

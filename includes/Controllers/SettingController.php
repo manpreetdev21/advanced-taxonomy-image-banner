@@ -7,9 +7,10 @@ defined('ABSPATH') || exit;
 class SettingController{
 
     private $plugin_setting_page_slug = 'advanced-taxonomy-image-banner-setting';
-    private $plugin_setting_page_text = 'Advanced Taxonomy Image';
+    private $plugin_setting_page_text = 'Advanced Taxonomy Settings';
     private $plugin_setting_link_text = 'Settings';
-    public $get_taxnomies_slug = '';
+    public $get_taxonomies_slug = '';
+    public $get_banner_taxonomies_slug = '';
 
     public function __construct() {
         add_filter( 'plugin_action_links', array( $this, 'atib_add_taxonomy_image_action_plugin' ), 10, 2 );
@@ -44,14 +45,14 @@ class SettingController{
             return;
         }
         
-        $this->get_taxnomies_slug = get_option('get_taxnomies_slug', 'category | post_tag');
-        $this->get_banner_taxnomies_slug = get_option('get_banner_taxnomies_slug', 'category | post_tag');
+        $this->get_taxonomies_slug = get_option('get_taxonomies_slug', 'category | post_tag');
+        $this->get_banner_taxonomies_slug = get_option('get_banner_taxonomies_slug', 'category | post_tag');
 
         include ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'includes/Views/Admin/plugin_setting_page_taxonomy.php';
     }
 
     public function atib_add_taxonomy_image_handle_settings_save(){
-        if ( !isset($_POST['ati_settings_nonce'] ) || !wp_verify_nonce($_POST['ati_settings_nonce'], 'ati_save_settings') ) {
+        if ( !isset($_POST['atbi_settings_nonce'] ) || !wp_verify_nonce($_POST['atbi_settings_nonce'], 'atbi_save_settings') ) {
             return;
         }
 
@@ -59,11 +60,11 @@ class SettingController{
             return;
         }
 
-        if ( isset( $_POST['get_taxnomies_slug'] ) ) {
-            update_option('get_taxnomies_slug', sanitize_textarea_field( $_POST['get_taxnomies_slug'] ) );
+        if ( isset( $_POST['get_taxonomies_slug'] ) ) {
+            update_option('get_taxonomies_slug', sanitize_textarea_field( $_POST['get_taxonomies_slug'] ) );
         }
-        if ( isset( $_POST['get_banner_taxnomies_slug'] ) ) {
-            update_option('get_banner_taxnomies_slug', sanitize_textarea_field( $_POST['get_banner_taxnomies_slug'] ) );
+        if ( isset( $_POST['get_banner_taxonomies_slug'] ) ) {
+            update_option('get_banner_taxonomies_slug', sanitize_textarea_field( $_POST['get_banner_taxonomies_slug'] ) );
         }
 
         add_settings_error(
