@@ -11,16 +11,16 @@ class BannerImageFieldController{
 
     function __construct(){
         foreach ( $this->get_all_taxnomy_banner_slug() as $taxonomy) {
-            add_action( "{$taxonomy}_add_form_fields", array( $this, 'atib_add_taxonomy_banner_image_field' ) );
+            //add_action( "{$taxonomy}_add_form_fields", array( $this, 'atib_add_taxonomy_banner_image_field' ) );
             add_action( "{$taxonomy}_edit_form_fields", array( $this, 'atib_edit_taxonomy_banner_image_field' ), 10, 2 );
             add_action( "created_{$taxonomy}", array( $this, 'atib_save_taxonomy_banner_image' ) );
             add_action( "edited_{$taxonomy}", array( $this, 'atib_save_taxonomy_banner_image' ) );
         }
     }
 
-    public function atib_add_taxonomy_banner_image_field($taxonomy) {
-        include ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'includes/Views/Admin/add_taxonomy_banner_image.php';
-    }
+    // public function atib_add_taxonomy_banner_image_field($taxonomy) {
+    //     include ADVANCED_TAXONOMY_IMAGES_PLUGIN_PATH . 'includes/Views/Admin/add_taxonomy_banner_image.php';
+    // }
 
     public function atib_edit_taxonomy_banner_image_field($term, $taxonomy) {
         $this->term_id = $term->term_id;

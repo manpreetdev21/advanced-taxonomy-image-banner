@@ -17,12 +17,12 @@
             </tr>
             <tr>
                 <th scope="row" style="width: 25%;">
-                    <label for="atib-get-taxnomies-slug-id">
+                    <label for="atib-get-taxnomies-banner-slug-id">
                         <?php _e('Banner Images Taxonomy Slug ( with "|" ):', 'advanced-taxonomy-image-banner'); ?>
                     </label>
                 </th>
                 <td>
-                    <textarea id="atib-get-taxnomies-slug-id"  name="get_banner_taxonomies_slug" rows="5" cols="50" class="large-text" placeholder="<?php esc_attr_e( 'Add Taxonomies Slug with "|" seprater', 'advanced-taxonomy-image-banner'); ?>"><?php echo esc_textarea( $this->get_banner_taxonomies_slug != '' ? $this->get_banner_taxonomies_slug : '' );?></textarea>
+                    <textarea id="atib-get-taxnomies-banner-slug-id"  name="get_banner_taxonomies_slug" rows="5" cols="50" class="large-text" placeholder="<?php esc_attr_e( 'Add Taxonomies Slug with "|" seprater', 'advanced-taxonomy-image-banner'); ?>"><?php echo esc_textarea( $this->get_banner_taxonomies_slug != '' ? $this->get_banner_taxonomies_slug : '' );?></textarea>
                 </td>
             </tr>
         </table>

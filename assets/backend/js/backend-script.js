@@ -1,18 +1,14 @@
 jQuery(document).ready(function($) {
-    // Only run if our elements exist on the page and wp.media is available
     if ($('#taxonomy-image-wrapper').length && typeof wp !== 'undefined' && wp.media) {
-        // Uploading files
-        var file_frame;
-        
+        var file_frame;        
         $('#taxonomy_media_button').on('click', function(event) {
             event.preventDefault();
             
-            // If the media frame already exists, reopen it.
             if (file_frame) {
                 file_frame.open();
                 return;
             }
-            // Create the media frame.
+            
             file_frame = wp.media.frames.file_frame = wp.media({
                 title: 'Select Category Image',
                 button: {
@@ -21,7 +17,6 @@ jQuery(document).ready(function($) {
                 multiple: false
             });
             
-            // When an image is selected, run a callback.
             file_frame.on('select', function() {
                 var attachment = file_frame.state().get('selection').first().toJSON();
                 $('#taxonomy-image-id').val(attachment.id);
@@ -29,8 +24,6 @@ jQuery(document).ready(function($) {
                 // Add class to indicate image is present
                 $('#taxonomy-image-wrapper').addClass('has-image');
             });
-            
-            // Finally, open the modal
             file_frame.open();
         });
         
@@ -40,7 +33,6 @@ jQuery(document).ready(function($) {
             $('#taxonomy-image-wrapper').html('').removeClass('has-image');
         });
         
-        // Add class on page load if image already exists
         if ($('#taxonomy-image-wrapper').find('img').length > 0) {
             $('#taxonomy-image-wrapper').addClass('has-image');
         }
@@ -49,66 +41,60 @@ jQuery(document).ready(function($) {
 
 /* Banner images */
 jQuery(document).ready(function($) {
-    // Add new banner
-    $(document).on('click', '.add_new_banner_button', function() {
-        var $container = $('.banner-slider-container');
-        var $firstItem = $container.find('.banner-slider-item').first();
-        
-        if ($firstItem.length) {
-            var $clone = $firstItem.clone();
+    if ($('.taxonomy-banner-image-preview').length && typeof wp !== 'undefined' && wp.media) {
+        $(document).on('click', '.add_new_banner_button', function() {
+            var $container = $('.banner-slider-container');
+            var $firstItem = $container.find('.banner-slider-item').first();
             
-            // Reset values for the clone
-            $clone.find('.image_attachment_banner_id').val('');
-            $clone.find('.taxonomy-banner-image-preview').html('');
-            $clone.find('.taxonomy_media_banner_remove').hide();
-            
-            // Add remove banner button
-            $clone.append('<button type="button" class="button button_remove_banner_button"><span class="dashicons dashicons-trash"></span></button>');
-            $container.append($clone);
-        }
-    });
-
-    // Remove banner
-    $(document).on('click', '.button_remove_banner_button', function() {
-        $(this).closest('.banner-slider-item').remove();
-    });
-
-    // Image upload
-    $(document).on('click', '.taxonomy_media_banner_button', function(e) {
-        e.preventDefault();
-        var $button = $(this);
-        var $item = $button.closest('.banner-slider-item');
-        var $input = $item.find('.image_attachment_banner_id');
-        var $preview = $item.find('.taxonomy-banner-image-preview');
-        var $removeBtn = $item.find('.taxonomy_media_banner_remove');
-
-        // Create media frame
-        var frame = wp.media({
-            title: 'Select or Upload Banner Image',
-            button: { text: 'Use this image' },
-            multiple: false
+            if ($firstItem.length) {
+                var $clone = $firstItem.clone();
+                
+                $clone.find('.image_attachment_banner_id').val('');
+                $clone.find('.taxonomy-banner-image-preview').html('');
+                $clone.find('.taxonomy_media_banner_remove').hide();
+                
+                $clone.append('<button type="button" class="button button_remove_banner_button"><span class="dashicons dashicons-trash"></span></button>');
+                $container.append($clone);
+            }
         });
-
-        frame.on('select', function() {
-            var attachment = frame.state().get('selection').first().toJSON();
-            $input.val(attachment.id);
-            $preview.html('<img src="' + attachment.url + '" alt="" style="max-width:100%;"/>');
-            
-            // Show the remove button
-            $removeBtn.show();
-        });
-
-        frame.open();
-    });
-
-    // Image remove
-    $(document).on('click', '.taxonomy_media_banner_remove', function(e) {
-        e.preventDefault();
-        var $button = $(this);
-        var $item = $button.closest('.banner-slider-item');
         
-        $item.find('.image_attachment_banner_id').val('');
-        $item.find('.taxonomy-banner-image-preview').html('');
-        $button.hide();
-    });
+        $(document).on('click', '.button_remove_banner_button', function() {
+            $(this).closest('.banner-slider-item').remove();
+        });
+        
+        $(document).on('click', '.taxonomy_media_banner_button', function(e) {
+            e.preventDefault();
+            var $button = $(this);
+            var $item = $button.closest('.banner-slider-item');
+            var $input = $item.find('.image_attachment_banner_id');
+            var $preview = $item.find('.taxonomy-banner-image-preview');
+            var $removeBtn = $item.find('.taxonomy_media_banner_remove');
+            
+            var frame = wp.media({
+                title: 'Select or Upload Banner Image',
+                button: { text: 'Use this image' },
+                multiple: false
+            });
+
+            frame.on('select', function() {
+                var attachment = frame.state().get('selection').first().toJSON();
+                $input.val(attachment.id);
+                $preview.html('<img src="' + attachment.url + '" alt="" style="max-width:100%;"/>');
+                
+                $removeBtn.show();
+            });
+
+            frame.open();
+        });
+        
+        $(document).on('click', '.taxonomy_media_banner_remove', function(e) {
+            e.preventDefault();
+            var $button = $(this);
+            var $item = $button.closest('.banner-slider-item');
+            
+            $item.find('.image_attachment_banner_id').val('');
+            $item.find('.taxonomy-banner-image-preview').html('');
+            $button.hide();
+        });
+    }    
 });
