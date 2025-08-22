@@ -1,4 +1,3 @@
-<?php var_dump($this->banner_sliders);?>
 <tr class="form-field term-banner-thumbnail-wrap">
     <th scope="row" valign="top"><label><?php esc_html_e('Banner Images', 'advanced-taxonomy-image-banner'); ?></label></th>
     <td>
